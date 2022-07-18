@@ -1,41 +1,42 @@
 ﻿@model Subscription
 
-<form method="post">
+<form method="post" asp-action="Delete">
+    <input asp-for="ID" hidden />
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Create Subscription</h2>
+            <h2 class="text-primary">Delete Subscription</h2>
             <hr />
         </div>
         <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
+            <input disabled asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" />
+            <input disabled asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="NationalCalls"></label>
-            <input asp-for="NationalCalls" class="form-control" />
+            <input disabled asp-for="NationalCalls" class="form-control" />
             <span asp-validation-for="NationalCalls" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="InternationalCalls"></label>
-            <input asp-for="InternationalCalls" class="form-control" />
+            <input disabled asp-for="InternationalCalls" class="form-control" />
             <span asp-validation-for="InternationalCalls" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Internet"></label>
-            <input asp-for="Internet" class="form-control" />
+            <input disabled asp-for="Internet" class="form-control" />
             <span asp-validation-for="Internet" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Roaming"></label>
-            <input asp-for="Roaming" class="form-check-input" type="checkbox" />
+            <input disabled asp-for="Roaming" class="form-check-input" type="checkbox" />
         </div>
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
         <a asp-controller="Subscription" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
     </div>
 </form>

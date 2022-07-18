@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace MobileSubsApp.Models
 {
@@ -11,12 +12,15 @@ namespace MobileSubsApp.Models
         public string Name { get; set; }
 
         [Required]
+        [DisplayName("Price (Lei)")]
         public float Price { get; set; }
 
         [Required]
+        [DisplayName("National Calls")]
         public string NationalCalls { get; set; }
 
         [Required]
+        [DisplayName("International Calls")]
         public string InternationalCalls { get; set; }
 
         [Required]

@@ -19,7 +19,7 @@ namespace MobileSubsApp.Controllers
             return View(objSubscriptionList);
         }
 
-        //GET METHOD
+        //GET METHOD - ADD
         public IActionResult Create()
         {       
             return View();
@@ -30,9 +30,82 @@ namespace MobileSubsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Subscription obj)
         {
-            _db.Subscriptions.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Subscriptions.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+            
+        }
+
+        //GET METHOD - EDIT
+        public IActionResult Edit(int? id)
+        {
+            if( id == null || id == 0 )
+            {
+                return NotFound();
+            }
+            var subscriptionFromDb = _db.Subscriptions.Find(id);
+
+
+            if(subscriptionFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(subscriptionFromDb);
+        }
+
+        //POST METHOD
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Subscription obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Subscriptions.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+
+        }
+
+        //GET METHOD - DELETE
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var subscriptionFromDb = _db.Subscriptions.Find(id);
+
+
+            if (subscriptionFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(subscriptionFromDb);
+        }
+
+        //POST METHOD
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(int? id)
+        {
+            var obj = _db.Subscriptions.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+
+                _db.Subscriptions.Remove(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+
         }
     }
 }
