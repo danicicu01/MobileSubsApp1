@@ -34,6 +34,7 @@ namespace MobileSubsApp.Controllers
             {
                 _db.Subscriptions.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Subscription added successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -67,6 +68,7 @@ namespace MobileSubsApp.Controllers
             {
                 _db.Subscriptions.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Subscription updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -104,6 +106,7 @@ namespace MobileSubsApp.Controllers
 
                 _db.Subscriptions.Remove(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Subscription deleted successfully";
                 return RedirectToAction("Index");
 
         }
